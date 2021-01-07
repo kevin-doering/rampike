@@ -10,7 +10,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/rpk-client",
+            "outputPath": "dist/rpk-client/browser",
             "index": "apps/rpk-client/src/index.html",
             "main": "apps/rpk-client/src/main.ts",
             "polyfills": "apps/rpk-client/src/polyfills.ts",
@@ -90,6 +90,53 @@
           "options": {
             "jestConfig": "apps/rpk-client/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/rpk-client/server",
+            "main": "apps/rpk-client/server.ts",
+            "tsConfig": "apps/rpk-client/tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "apps/rpk-client/src/environments/environment.ts",
+                  "with": "apps/rpk-client/src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "rpk-client:build",
+            "serverTarget": "rpk-client:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "rpk-client:build:production",
+              "serverTarget": "rpk-client:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "rpk-client:build:production",
+            "serverTarget": "rpk-client:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }
