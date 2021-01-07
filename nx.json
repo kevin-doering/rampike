@@ -40,10 +40,10 @@
         "rpk-client"
       ]
     },
-    "api": {
+    "api-interfaces": {
       "tags": []
     },
-    "api-interfaces": {
+    "rpk-api": {
       "tags": []
     }
   }

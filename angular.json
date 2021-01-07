@@ -20,7 +20,9 @@
               "apps/rpk-client/src/favicon.ico",
               "apps/rpk-client/src/assets"
             ],
-            "styles": ["apps/rpk-client/src/styles.scss"],
+            "styles": [
+              "apps/rpk-client/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -82,7 +84,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/rpk-client"],
+          "outputs": [
+            "coverage/apps/rpk-client"
+          ],
           "options": {
             "jestConfig": "apps/rpk-client/jest.config.js",
             "passWithNoTests": true
@@ -111,58 +115,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/rpk-client-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "api": {
-      "root": "apps/api",
-      "sourceRoot": "apps/api/src",
-      "projectType": "application",
-      "prefix": "api",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/apps/api",
-            "main": "apps/api/src/main.ts",
-            "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": ["apps/api/src/assets"]
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/api/src/environments/environment.ts",
-                  "with": "apps/api/src/environments/environment.prod.ts"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "api:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/api/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/api"],
-          "options": {
-            "jestConfig": "apps/api/jest.config.js",
-            "passWithNoTests": true
+            "lintFilePatterns": [
+              "apps/rpk-client-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -175,7 +130,68 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/api-interfaces/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/api-interfaces/**/*.ts"
+            ]
+          }
+        }
+      }
+    },
+    "rpk-api": {
+      "root": "apps/rpk-api",
+      "sourceRoot": "apps/rpk-api/src",
+      "projectType": "application",
+      "prefix": "api",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/rpk-api",
+            "main": "apps/rpk-api/src/main.ts",
+            "tsConfig": "apps/rpk-api/tsconfig.app.json",
+            "assets": [
+              "apps/rpk-api/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/rpk-api/src/environments/environment.ts",
+                  "with": "apps/rpk-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "rpk-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/rpk-api/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/rpk-api"
+          ],
+          "options": {
+            "jestConfig": "apps/rpk-api/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
