@@ -3,5 +3,6 @@ module.exports = {
     '<rootDir>/apps/rpk-client',
     '<rootDir>/apps/api',
     '<rootDir>/libs/shared/assets',
+    '<rootDir>/libs/shared/styles',
   ],
 };
