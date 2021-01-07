@@ -23,7 +23,7 @@
                 "output": "assets"
               }
             ],
-            "styles": ["libs/shared/styles/src/index.scss"],
+            "styles": ["libs/shared/styles/src/default.scss"],
             "scripts": []
           },
           "configurations": {
