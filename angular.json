@@ -30,8 +30,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/rpk-client/src/environments/environment.ts",
-                  "with": "apps/rpk-client/src/environments/environment.prod.ts"
+                  "replace": "libs/shared/config/src/lib/environment.ts",
+                  "with": "libs/shared/config/src/lib/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -103,8 +103,8 @@
               "outputHashing": "media",
               "fileReplacements": [
                 {
-                  "replace": "apps/rpk-client/src/environments/environment.ts",
-                  "with": "apps/rpk-client/src/environments/environment.prod.ts"
+                  "replace": "libs/shared/config/src/lib/environment.ts",
+                  "with": "libs/shared/config/src/lib/environment.prod.ts"
                 }
               ],
               "sourceMap": false,
@@ -241,6 +241,31 @@
       "sourceRoot": "libs/shared/styles/src",
       "prefix": "rampike",
       "architect": {}
+    },
+    "shared-config": {
+      "projectType": "library",
+      "root": "libs/shared/config",
+      "sourceRoot": "libs/shared/config/src",
+      "prefix": "rampike",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/config/src/**/*.ts",
+              "libs/shared/config/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/config"],
+          "options": {
+            "jestConfig": "libs/shared/config/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

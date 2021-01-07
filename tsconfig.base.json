@@ -17,7 +17,8 @@
     "paths": {
       "@rampike/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@rampike/shared/assets": ["libs/shared/assets/src/index.ts"],
-      "@rampike/shared/styles": ["libs/shared/styles/src/index.ts"]
+      "@rampike/shared/styles": ["libs/shared/styles/src/index.ts"],
+      "@rampike/shared/config": ["libs/shared/config/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

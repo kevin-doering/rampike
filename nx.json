@@ -44,6 +44,9 @@
     },
     "shared-styles": {
       "tags": ["scope:shared", "type:styles"]
+    },
+    "shared-config": {
+      "tags": ["scope:shared", "type:config"]
     }
   }
 }
