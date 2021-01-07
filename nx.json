@@ -27,7 +27,11 @@
   },
   "projects": {
     "rpk-client": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": [
+        "shared-assets",
+        "shared-styles"
+      ]
     },
     "rpk-client-e2e": {
       "tags": [],
