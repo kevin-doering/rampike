@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'shared-config',
+  displayName: 'shared-environments',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  coverageDirectory: '../../../coverage/libs/shared/config',
+  coverageDirectory: '../../../coverage/libs/shared/environments',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

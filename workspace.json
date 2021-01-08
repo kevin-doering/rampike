@@ -23,7 +23,9 @@
                 "output": "assets"
               }
             ],
-            "styles": ["libs/shared/styles/src/default.scss"],
+            "styles": [
+              "libs/shared/styles/src/default.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -85,7 +87,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/rpk-client"],
+          "outputs": [
+            "coverage/apps/rpk-client"
+          ],
           "options": {
             "jestConfig": "apps/rpk-client/jest.config.js",
             "passWithNoTests": true
@@ -130,7 +134,9 @@
           "options": {
             "browserTarget": "rpk-client:build:production",
             "serverTarget": "rpk-client:server:production",
-            "routes": ["/"]
+            "routes": [
+              "/"
+            ]
           },
           "configurations": {
             "production": {}
@@ -159,7 +165,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/rpk-client-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/rpk-client-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -172,7 +180,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/api-interfaces/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/api-interfaces/**/*.ts"
+            ]
           }
         }
       }
@@ -185,7 +195,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/rpk-api",
             "main": "apps/rpk-api/src/main.ts",
@@ -221,12 +233,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/rpk-api/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/rpk-api/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/rpk-api"],
+          "outputs": [
+            "coverage/apps/rpk-api"
+          ],
           "options": {
             "jestConfig": "apps/rpk-api/jest.config.js",
             "passWithNoTests": true
@@ -248,26 +264,28 @@
       "prefix": "rampike",
       "architect": {}
     },
-    "shared-config": {
+    "shared-environments": {
       "projectType": "library",
-      "root": "libs/shared/config",
-      "sourceRoot": "libs/shared/config/src",
+      "root": "libs/shared/environments",
+      "sourceRoot": "libs/shared/environments/src",
       "prefix": "rampike",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/shared/config/src/**/*.ts",
-              "libs/shared/config/src/**/*.html"
+              "libs/shared/environments/src/**/*.ts",
+              "libs/shared/environments/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/config"],
+          "outputs": [
+            "coverage/libs/shared/environments"
+          ],
           "options": {
-            "jestConfig": "libs/shared/config/jest.config.js",
+            "jestConfig": "libs/shared/environments/jest.config.js",
             "passWithNoTests": true
           }
         }

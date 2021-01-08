@@ -19,7 +19,12 @@
       "runner": "@nrwl/nx-cloud",
       "options": {
         "accessToken": "ZWQyYmJiYjMtZWViZC00NTFmLWFlMjktMjQxNzk3YTczOTU2fHJlYWQtd3JpdGU=",
-        "cacheableOperations": ["build", "test", "lint", "e2e"],
+        "cacheableOperations": [
+          "build",
+          "test",
+          "lint",
+          "e2e"
+        ],
         "canTrackAnalytics": false,
         "showUsageWarnings": true
       }
@@ -35,7 +40,9 @@
     },
     "rpk-client-e2e": {
       "tags": [],
-      "implicitDependencies": ["rpk-client"]
+      "implicitDependencies": [
+        "rpk-client"
+      ]
     },
     "api-interfaces": {
       "tags": []
@@ -44,13 +51,22 @@
       "tags": []
     },
     "shared-assets": {
-      "tags": ["scope:shared", "type:assets"]
+      "tags": [
+        "scope:shared",
+        "type:assets"
+      ]
     },
     "shared-styles": {
-      "tags": ["scope:shared", "type:styles"]
+      "tags": [
+        "scope:shared",
+        "type:styles"
+      ]
     },
-    "shared-config": {
-      "tags": ["scope:shared", "type:config"]
+    "shared-environments": {
+      "tags": [
+        "scope:shared",
+        "type:config"
+      ]
     }
   }
 }
