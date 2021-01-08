@@ -10,7 +10,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/rpk-client/browser",
+            "outputPath": "dist/apps/rpk-client/browser",
             "index": "apps/rpk-client/src/index.html",
             "main": "apps/rpk-client/src/main.ts",
             "polyfills": "apps/rpk-client/src/polyfills.ts",
@@ -94,7 +94,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/rpk-client/server",
+            "outputPath": "dist/apps/rpk-client/server",
             "main": "apps/rpk-client/server.ts",
             "tsConfig": "apps/rpk-client/tsconfig.server.json"
           },

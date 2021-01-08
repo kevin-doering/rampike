@@ -27,7 +27,7 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "dev:ssr": "ng run rpk-client:serve-ssr",
-    "serve:ssr": "node dist/rpk-client/server/main.js",
+    "serve:ssr": "node dist/apps/rpk-client/server/main.js",
     "build:ssr": "ng build --prod && ng run rpk-client:server:production",
     "prod:ssr": "npm run build:ssr && npm run serve:ssr",
     "prerender": "ng run rpk-client:prerender"
