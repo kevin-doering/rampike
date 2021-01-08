@@ -3,7 +3,7 @@ import { Message } from '@rampike/shared/interfaces';
 
 @Injectable()
 export class AppService {
-  getData(): Message {
-    return { message: 'Welcome to api!' };
+  getIndex(): Message {
+    return { message: 'hot welcome in rampike grove!' };
   }
 }
