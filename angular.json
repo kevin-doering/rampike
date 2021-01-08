@@ -190,7 +190,13 @@
             "outputPath": "dist/apps/rpk-api",
             "main": "apps/rpk-api/src/main.ts",
             "tsConfig": "apps/rpk-api/tsconfig.app.json",
-            "assets": ["apps/rpk-api/src/assets"]
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "libs/shared/assets/src",
+                "output": "assets"
+              }
+            ]
           },
           "configurations": {
             "production": {
