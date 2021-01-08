@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Message } from '@rampike/api-interfaces';
+import { environment } from '@rampike/shared/config';
 
 @Component({
   selector: 'rampike-root',
@@ -8,6 +9,9 @@ import { Message } from '@rampike/api-interfaces';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  mode: string;
   hello$ = this.http.get<Message>('http://localhost:3333/api/hello');
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.mode = environment.production ? 'prod' : 'dev';
+  }
 }
