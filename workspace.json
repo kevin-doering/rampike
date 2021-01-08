@@ -172,21 +172,6 @@
         }
       }
     },
-    "api-interfaces": {
-      "root": "libs/api-interfaces",
-      "sourceRoot": "libs/api-interfaces/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/api-interfaces/**/*.ts"
-            ]
-          }
-        }
-      }
-    },
     "rpk-api": {
       "root": "apps/rpk-api",
       "sourceRoot": "apps/rpk-api/src",
@@ -287,6 +272,21 @@
           "options": {
             "jestConfig": "libs/shared/environments/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-interfaces": {
+      "root": "libs/shared/interfaces",
+      "sourceRoot": "libs/shared/interfaces/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/interfaces/**/*.ts"
+            ]
           }
         }
       }

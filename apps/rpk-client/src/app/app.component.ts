@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Message } from '@rampike/api-interfaces';
+import { Message } from '@rampike/shared/interfaces';
 import { environment } from '@rampike/shared/environments';
 
 @Component({

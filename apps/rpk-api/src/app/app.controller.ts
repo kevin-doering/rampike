@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 
-import { Message } from '@rampike/api-interfaces';
+import { Message } from '@rampike/shared/interfaces';
 
 import { AppService } from './app.service';
 

@@ -18,9 +18,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@rampike/api-interfaces": [
-        "libs/api-interfaces/src/index.ts"
-      ],
       "@rampike/shared/assets": [
         "libs/shared/assets/src/index.ts"
       ],
@@ -29,6 +26,9 @@
       ],
       "@rampike/shared/environments": [
         "libs/shared/environments/src/index.ts"
+      ],
+      "@rampike/shared/interfaces": [
+        "libs/shared/interfaces/src/index.ts"
       ]
     }
   },

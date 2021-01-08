@@ -44,9 +44,6 @@
         "rpk-client"
       ]
     },
-    "api-interfaces": {
-      "tags": []
-    },
     "rpk-api": {
       "tags": []
     },
@@ -67,6 +64,9 @@
         "scope:shared",
         "type:config"
       ]
+    },
+    "shared-interfaces": {
+      "tags": []
     }
   }
 }

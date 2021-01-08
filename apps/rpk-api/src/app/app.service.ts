@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Message } from '@rampike/api-interfaces';
+import { Message } from '@rampike/shared/interfaces';
 
 @Injectable()
 export class AppService {
