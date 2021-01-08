@@ -199,8 +199,8 @@
               "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "apps/rpk-api/src/environments/environment.ts",
-                  "with": "apps/rpk-api/src/environments/environment.prod.ts"
+                  "replace": "libs/shared/config/src/lib/environment.ts",
+                  "with": "libs/shared/config/src/lib/environment.prod.ts"
                 }
               ]
             }
