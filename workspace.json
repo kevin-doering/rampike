@@ -32,8 +32,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "libs/shared/config/src/lib/environment.ts",
-                  "with": "libs/shared/config/src/lib/environment.prod.ts"
+                  "replace": "apps/rpk-client/src/environments/environment.ts",
+                  "with": "apps/rpk-client/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -107,8 +107,8 @@
               "outputHashing": "media",
               "fileReplacements": [
                 {
-                  "replace": "libs/shared/config/src/lib/environment.ts",
-                  "with": "libs/shared/config/src/lib/environment.prod.ts"
+                  "replace": "apps/rpk-client/src/environments/environment.ts",
+                  "with": "apps/rpk-client/src/environments/environment.prod.ts"
                 }
               ],
               "sourceMap": false,
@@ -202,8 +202,8 @@
               "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "libs/shared/config/src/lib/environment.ts",
-                  "with": "libs/shared/config/src/lib/environment.prod.ts"
+                  "replace": "apps/rpk-api/src/environments/environment.ts",
+                  "with": "apps/rpk-api/src/environments/environment.prod.ts"
                 }
               ]
             }
