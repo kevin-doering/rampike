@@ -14,8 +14,8 @@ describe('AppService', () => {
   });
 
   describe('getIndex', () => {
-    it('should return "Welcome to api!"', () => {
-      expect(service.getIndex()).toEqual({ message: 'Welcome to api!' });
+    it('should return "hot welcome in rampike grove!"', () => {
+      expect(service.getIndex()).toEqual({ message: 'hot welcome in rampike grove!' });
     });
   });
 });
