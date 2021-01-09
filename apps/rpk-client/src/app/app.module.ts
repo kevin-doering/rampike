@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
 @NgModule({
   imports: [
-    RouterModule,
-    BrowserModule.withServerTransition({ appId: 'serverApp' })
+    HttpClientModule,
+    BrowserModule.withServerTransition({ appId: 'rpk-server' })
   ],
   providers: [],
   declarations: [AppComponent],

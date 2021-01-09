@@ -10,7 +10,7 @@ import { AppService } from './app.service';
     host: 'localhost',
     port: 5432,
     username: 'postgres',
-    password: '5dp4sa3kd2dt',
+    password: 'free',
     database: 'rpk-api',
     entities: [],
     synchronize: true,
