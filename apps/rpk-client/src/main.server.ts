@@ -1,6 +1,6 @@
 import { enableProdMode } from '@angular/core';
 
-import { environment } from './environments/environment';
+import { environment } from '@rampike/shared/environments';
 
 if (environment.production) {
   enableProdMode();
