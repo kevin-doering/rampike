@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+// import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-@Module({
-  imports: [TypeOrmModule.forRoot({
+/*
+TypeOrmModule.forRoot({
     type: 'postgres',
     host: 'localhost',
     port: 5432,
@@ -14,7 +14,11 @@ import { AppService } from './app.service';
     database: 'rpk-api',
     entities: [],
     synchronize: true,
-  })],
+  })
+ */
+
+@Module({
+  imports: [],
   controllers: [AppController],
   providers: [AppService],
 })
