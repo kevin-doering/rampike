@@ -3,4 +3,7 @@
   <div *ngIf="response$ | async as res">
     {{ res.message }}
   </div>
+  <div *ngIf="test$ | async as test">
+    {{ test ? 'prod' : 'dev' }}
+  </div>
 </div>
