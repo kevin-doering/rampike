@@ -14,8 +14,8 @@ describe('AppService', () => {
   });
 
   describe('getIndex', () => {
-    it('should return "hot welcome in rampike grove!"', () => {
-      expect(service.getIndex()).toEqual({ message: 'hot welcome in rampike grove!' });
+    it('should return "warm welcome in rampike grove!"', () => {
+      expect(service.getIndex()).toEqual({ message: 'warm welcome in rampike grove!' });
     });
   });
 });

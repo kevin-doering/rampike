@@ -14,9 +14,9 @@ describe('AppController', () => {
   });
 
   describe('getData', () => {
-    it('should return "hot welcome in rampike grove!"', () => {
+    it('should return "warm welcome in rampike grove!"', () => {
       const appController = app.get<AppController>(AppController);
-      expect(appController.getIndex()).toEqual({ message: 'hot welcome in rampike grove!' });
+      expect(appController.getIndex()).toEqual({ message: 'warm welcome in rampike grove!' });
     });
   });
 });

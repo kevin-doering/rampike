@@ -3,7 +3,5 @@
   <div *ngIf="response$ | async as res">
     {{ res.message }}
   </div>
-  <div *ngIf="isProdApi$ | async as isProdApi">
-    API: {{ isProdApi ? 'prod' : 'dev' }}
-  </div>
+  <span>API: {{ (isProdApi$ | async) ? 'prod' : 'dev' }}</span>
 </div>

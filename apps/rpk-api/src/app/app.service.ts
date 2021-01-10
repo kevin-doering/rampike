@@ -5,7 +5,7 @@ import { environment } from '@rampike/shared/environments';
 @Injectable()
 export class AppService {
   getIndex(): Message {
-    return { message: 'hot welcome in rampike grove!' };
+    return { message: 'warm welcome in rampike grove!' };
   }
 
   isProduction(): boolean {
