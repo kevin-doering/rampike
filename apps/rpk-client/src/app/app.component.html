@@ -1,7 +1,5 @@
-<div style="text-align: center;">
-  <span>Client: {{ isProdClient ? 'prod' : 'dev'}}</span>
-  <div *ngIf="response$ | async as res">
-    {{ res.message }}
-  </div>
-  <span>API: {{ (isProdApi$ | async) ? 'prod' : 'dev' }}</span>
+<span>Client: {{ isProdClient ? 'prod' : 'dev'}}</span>
+<div *ngIf="response$ | async as res">
+  {{ res.message }}
 </div>
+<span>API: {{ (isProdApi$ | async) ? 'prod' : 'dev' }}</span>
