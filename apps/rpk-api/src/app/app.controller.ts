@@ -12,4 +12,9 @@ export class AppController {
   getIndex(): Message {
     return this.appService.getIndex();
   }
+
+  @Get('env')
+  getEnv(): boolean {
+    return this.appService.getEnv();
+  }
 }
