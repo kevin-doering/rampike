@@ -10,12 +10,12 @@ import { environment } from '@rampike/shared/environments';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  isProd: boolean;
+  isProdClient: boolean;
   response$: Observable<Message>;
-  test$: Observable<boolean>;
+  isProdApi$: Observable<boolean>;
   constructor(private readonly http: HttpClient) {
-    this.isProd = environment.production;
+    this.isProdClient = environment.production;
     this.response$ = this.http.get<Message>('http://localhost:3333/api/');
-    this.test$ = this.http.get<boolean>('http://localhost:3333/api/env');
+    this.isProdApi$ = this.http.get<boolean>('http://localhost:3333/api/production');
   }
 }

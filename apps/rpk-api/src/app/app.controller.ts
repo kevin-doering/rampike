@@ -13,8 +13,8 @@ export class AppController {
     return this.appService.getIndex();
   }
 
-  @Get('env')
-  getEnv(): boolean {
-    return this.appService.getEnv();
+  @Get('production')
+  isProduction(): boolean {
+    return this.appService.isProduction();
   }
 }

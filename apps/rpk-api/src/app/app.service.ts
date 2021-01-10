@@ -8,7 +8,7 @@ export class AppService {
     return { message: 'hot welcome in rampike grove!' };
   }
 
-  getEnv(): boolean {
+  isProduction(): boolean {
     return environment.production;
   }
 }
