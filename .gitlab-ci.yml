@@ -21,7 +21,7 @@ version:
   script:
     - pip install semver
     - chmod -x ./.deploy/gen-semver
-    - ./.deploy/gen-semver > version
+    - sudo ./.deploy/gen-semver > version
   artifacts:
     expire_in: 1 day
     paths:
