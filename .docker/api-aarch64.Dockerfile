@@ -13,9 +13,10 @@ RUN npm run nx build $APP_NAME -- --prod --optimization
 
 FROM arm64v8/node:14.15.4-alpine
 ARG APP_NAME
+ENV PORT=3000
 WORKDIR /dist/app
 COPY --from=buildContainer /rampike/dist/apps/$APP_NAME/ /dist/app/
 COPY --from=buildContainer /rampike/*.json /dist/app/
 RUN npm install --only=production
-EXPOSE 3333
+EXPOSE $PORT
 CMD ["node", "main.js"]

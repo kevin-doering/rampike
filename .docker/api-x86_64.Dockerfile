@@ -10,11 +10,13 @@ COPY ./apps/$APP_NAME/ ./apps/$APP_NAME/
 COPY ./libs/ ./libs/
 RUN npm ci
 RUN npm run nx build $APP_NAME -- --prod --optimization
-RUN npm run nx run $APP_NAME:server:production
 
 FROM node:14.15-alpine
 ARG APP_NAME
-COPY --from=buildContainer /rampike/dist/apps/$APP_NAME/browser/ /dist/apps/$APP_NAME/browser/
-COPY --from=buildContainer /rampike/dist/apps/$APP_NAME/server/ /dist/apps/server/
-EXPOSE 4000
-CMD ["node", "dist/apps/server/main.js"]
+ENV PORT=3000
+WORKDIR /dist/app
+COPY --from=buildContainer /rampike/dist/apps/$APP_NAME/ /dist/app/
+COPY --from=buildContainer /rampike/*.json /dist/app/
+RUN npm install --only=production
+EXPOSE $PORT
+CMD ["node", "main.js"]

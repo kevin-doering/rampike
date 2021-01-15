@@ -31,10 +31,10 @@
     "run:ssr:rpk-client": "node dist/apps/rpk-client/server/main.js",
     "start:ssr:rpk-client": "npm run build:ssr:rpk-client && npm run run:ssr:rpk-client",
     "prerender": "ng run rpk-client:prerender",
-    "docker:build:rpk-client": "docker build -t rpk-client . --build-arg APP_NAME=rpk-client -f .docker/ssr.Dockerfile",
+    "docker:build:rpk-client": "docker build -t rpk-client . --build-arg APP_NAME=rpk-client -f .docker/ssr-x86_64.Dockerfile",
     "docker:run:rpk-client": "docker run -d -it -p 4000:4000 rpk-client",
-    "docker:build:rpk-api": "docker build -t rpk-api . --build-arg APP_NAME=rpk-api -f .docker/api.Dockerfile",
-    "docker:run:rpk-api": "docker run -d -it -p 3333:3333 rpk-api",
+    "docker:build:rpk-api": "docker build -t rpk-api . --build-arg APP_NAME=rpk-api -f .docker/api-x86_64.Dockerfile",
+    "docker:run:rpk-api": "docker run -d -it -p 3000:3000 rpk-api",
     "docker:start:rpk-client": "npm run docker:build:rpk-client && npm run docker:run:rpk-client",
     "docker:start:rpk-api": "npm run docker:build:rpk-api && npm run docker:run:rpk-api"
   },
