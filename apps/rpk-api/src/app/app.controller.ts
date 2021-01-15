@@ -17,4 +17,9 @@ export class AppController {
   isProduction(): boolean {
     return this.appService.isProduction();
   }
+
+  @Get('version')
+  getVersion(): string {
+    return this.appService.getVersion();
+  }
 }

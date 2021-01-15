@@ -11,4 +11,8 @@ export class AppService {
   isProduction(): boolean {
     return environment.production;
   }
+
+  getVersion(): string {
+    return process.env.VERSION;
+  }
 }
