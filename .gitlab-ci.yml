@@ -14,7 +14,7 @@ version:
   image: python:3.7-stretch
   stage: version
   only:
-    - 01-deploy-rpk-api
+    - main
   before_script:
     - mkdir -p ~/.ssh && chmod 700 ~/.ssh
     - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' > ~/.ssh/id_rsa
@@ -38,7 +38,7 @@ build:
   services:
     - docker:dind
   only:
-    - 01-deploy-rpk-api
+    - main
     - branches
   before_script:
     - apk add --no-cache gettext
