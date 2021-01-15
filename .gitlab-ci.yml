@@ -55,7 +55,9 @@ build:
     - envsubst < ./.deploy/example.env > ./release/.env
     - mv ./.deploy/build-api.sh ./release
     - chmod +x ./release/build-api.sh
+    - mv ./.deploy/release-api.sh ./release
+    - chmod +x ./release/release-api.sh
   script:
     - scp -P 8787 -r ./release ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
-    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "bash ~/release/build-api.sh; rm -r ~/release"
+    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "bash ~/release/build-api.sh; bash ~/release/release-api.sh; rm -r ~/release"
 
