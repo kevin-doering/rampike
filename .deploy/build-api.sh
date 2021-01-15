@@ -15,5 +15,5 @@ else
 fi
 
 docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-docker build -t $DOCKER_USER/$APP_NAME:$VERSION . -f .docker/api-aarch64.Dockerfile --build-arg APP_NAME=$APP_NAME
+docker build -t $DOCKER_USER/$APP_NAME:$VERSION . -f .docker/api-aarch64.Dockerfile --build-arg APP_NAME=$APP_NAME --build-arg RELEASE=$VERSION
 docker push $DOCKER_USER/$APP_NAME:$VERSION
