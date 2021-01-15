@@ -14,8 +14,8 @@ def tag_repo(tag):
     url = os.environ["CI_REPOSITORY_URL"]
 
     # Transforms the repository URL from HTTPS to the SSH.
-    # Example input: https://gitlab-ci-token:xxxxxxxxxxxxxxxxxxxx@gitlab.com/threedotslabs/ci-examples.git
-    # Example output: git@gitlab.com:threedotslabs/ci-examples.git
+    # Example input: https://gitlab-ci-token:xxxxxxxxxxxxxxxxxxxx@gitlab.com/rampike/rampike.git
+    # Example output: git@gitlab.com:rampike/rampike.git
     push_url = re.sub(r'.+@([^/]+)/', r'git@\1:', url)
 
     git("remote", "set-url", "--push", "origin", push_url)

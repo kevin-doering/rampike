@@ -6,6 +6,7 @@ variables:
   APP_NAME: rpk-api
   GITLAB_DOMAIN: gitlab.com
   RAMPIKE_DOMAIN: rampike.de
+  PROJECT_REPOSITORY: "git@gitlab.com:${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git"
 
 version:
   image: python:3.7-stretch

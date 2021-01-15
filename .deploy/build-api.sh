@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [ -f ./.env ]; then
-    . ./.env
+if [ -f ~/release/.env ]; then
+    . ~/release/.env
 fi
 
 if [ -f ~/apx/$CI_PROJECT_NAME/package.json ]; then
@@ -9,7 +9,7 @@ if [ -f ~/apx/$CI_PROJECT_NAME/package.json ]; then
   git pull
 else
   mkdir -p ~/apx && cd ~/apx
-  git clone $CI_REPOSITORY_URL
+  git clone $PROJECT_REPOSITORY
   cd $CI_PROJECT_NAME
 fi
 
