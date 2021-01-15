@@ -38,7 +38,7 @@ build:
     - apk add --no-cache gettext
     - mkdir -p ~/.ssh && chmod 700 ~/.ssh
     - which ssh-agent || ( apk --update add openssh-client )
-    - ssh-keyscan ${RAMPIKE_DOMAIN} -p 8787 >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts
+    - ssh-keyscan -H ${RAMPIKE_DOMAIN} >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - export VERSION=$(cat ./version)
