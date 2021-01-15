@@ -1,0 +1,52 @@
+stages:
+  - version
+  - build
+
+variables:
+  GITLAB_DOMAIN: gitlab.com
+  RAMPIKE_DOMAIN: rampike.de
+  APP_NAME: rpk-api
+
+version:
+  image: python:3.7-stretch
+  stage: version
+  only:
+    - main
+  before_script:
+    - mkdir -p ~/.ssh && chmod 700 ~/.ssh
+    - which ssh-agent || ( apk --update add openssh-client )
+    - ssh-keyscan -H ${GITLAB_DOMAIN} >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  script:
+    - pip install semver
+    - ./.deploy/gen-semver > version
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - version
+
+build:
+  image: docker
+  stage: build
+  services:
+    - docker:dind
+  only:
+    - main
+    - branches
+  before_script:
+    - apk add --no-cache gettext
+    - mkdir -p ~/.ssh && chmod 700 ~/.ssh
+    - which ssh-agent || ( apk --update add openssh-client )
+    - ssh-keyscan -H ${RAMPIKE_DOMAIN} >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - export VERSION=$(cat ./version)
+    - mkdir -p ./release
+    - envsubst < ./.deploy/example.env > ./release/.env
+    - mv ./.deploy/build-api.sh ./release
+    - chmod -x ./release/build-api.sh
+  script:
+    - scp -r ./release ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
+    - ssh ${SERVER_USER}@{RAMPIKE_DOMAIN} "~/release/build-api.sh && exit"
+
