@@ -22,4 +22,14 @@ export class AppController {
   getVersion(): string {
     return this.appService.getVersion();
   }
+
+  @Get('healthz')
+  isHealthy(): boolean {
+    return this.appService.isHealthy();
+  }
+
+  @Get('readyz')
+  isReady(): boolean {
+    return this.appService.isReady();
+  }
 }

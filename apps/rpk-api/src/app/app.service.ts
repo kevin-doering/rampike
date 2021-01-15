@@ -15,4 +15,12 @@ export class AppService {
   getVersion(): string {
     return process.env.VERSION;
   }
+
+  isHealthy(): boolean {
+    return true;
+  }
+
+  isReady(): boolean {
+    return true;
+  }
 }
