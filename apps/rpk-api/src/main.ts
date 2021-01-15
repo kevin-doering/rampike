@@ -14,7 +14,7 @@ async function bootstrap() {
     origin: ['http://localhost:4000', 'http://localhost:4200']
   });
   const version = process.env.VERSION;
-  const globalPrefix = version ? 'v' + version.split('.')[0] : 'v1';
+  const globalPrefix = version ? 'v' + version.split('.')[0] : 'v0';
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3000;
   await app.listen(port, () => {
