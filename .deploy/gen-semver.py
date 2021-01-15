@@ -34,7 +34,7 @@ def main():
         latest = git("describe", "--tags").decode().strip()
     except subprocess.CalledProcessError:
         # No tags in the repository
-        version = "1.0.0"
+        version = "0.0.0"
     else:
         # Skip already tagged commits
         if '-' not in latest:
