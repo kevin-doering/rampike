@@ -6,6 +6,7 @@ variables:
   GITLAB_DOMAIN: gitlab.com
   RAMPIKE_DOMAIN: rampike.de
   APP_NAME: rpk-api
+  VERSION: 0.0.0
 
 version:
   image: python:3.7-stretch
@@ -47,7 +48,6 @@ build:
     - ssh-add ~/.ssh/id_rsa
     - ssh-keyscan -H ${RAMPIKE_DOMAIN} >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
-    - export VERSION=$(cat ./version)
     - mkdir -p ./release
     - envsubst < ./.deploy/example.env > ./release/.env
     - mv ./.deploy/build-api.sh ./release
