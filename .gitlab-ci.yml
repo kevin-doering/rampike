@@ -3,16 +3,15 @@ stages:
   - build
 
 variables:
+  APP_NAME: rpk-api
   GITLAB_DOMAIN: gitlab.com
   RAMPIKE_DOMAIN: rampike.de
-  APP_NAME: rpk-api
-  VERSION: 0.0.0
 
 version:
   image: python:3.7-stretch
   stage: version
   only:
-    - master
+    - main
   before_script:
     - mkdir -p ~/.ssh && chmod 700 ~/.ssh
     - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' > ~/.ssh/id_rsa
@@ -48,12 +47,12 @@ build:
     - ssh-add ~/.ssh/id_rsa
     - ssh-keyscan -p 8787 -H ${RAMPIKE_DOMAIN} >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
-    #- export VERSION=$(cat ./version)
+    - export VERSION=$(cat ./version)
     - mkdir -p ./release
     - envsubst < ./.deploy/example.env > ./release/.env
     - mv ./.deploy/build-api.sh ./release
-    - chmod -x ./release/build-api.sh
+    - chmod +x ./release/build-api.sh
   script:
     - scp -P 8787 -r ./release ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
-    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "chmod -x ~/release/build-api.sh; ~/release/build-api.sh && exit"
+    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "bash ~/release/build-api.sh && rm -r ~/release"
 
