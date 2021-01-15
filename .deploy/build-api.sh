@@ -4,13 +4,14 @@ if [ -f ~/release/.env ]; then
     . ~/release/.env
 fi
 
-if [ -f ~/apx/$CI_PROJECT_NAME/package.json ]; then
-  cd ~/apx/$CI_PROJECT_NAME
+if [ -f ~/apx/projects/$CI_PROJECT_NAME/package.json ]; then
+  cd ~/apx/projects/$CI_PROJECT_NAME
   git pull
 else
-  mkdir -p ~/apx && cd ~/apx
+  mkdir -p ~/apx/projects
+  cd ~/apx/projects
   git clone $PROJECT_REPOSITORY
-  cd $CI_PROJECT_NAME
+  cd ./$CI_PROJECT_NAME
 fi
 
 docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
