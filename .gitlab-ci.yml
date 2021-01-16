@@ -62,11 +62,10 @@ build:
     - export VERSION=$(cat ./version)
     - export CONTAINER_PORT=3000
     - envsubst < ./.release/example.env > ./release/.env
-    - mv ./.release/build-api.sh ./release
-    - chmod +x ./release/build-api.sh
-    - mv ./.release/deploy-api.sh ./release
-    - chmod +x ./release/deploy-api.sh
+    - mv ./.release/build.sh ./release
+    - chmod +x ./release/build.sh
+    - mv ./.release/deploy.sh ./release
+    - chmod +x ./release/deploy.sh
   script:
     - scp -P 8787 -r ./release ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
-    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "bash ~/release/build-api.sh; bash ~/release/deploy-api.sh; rm -r ~/release"
-
+    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "bash ~/release/build.sh; bash ~/release/deploy.sh; rm -r ~/release"
