@@ -52,12 +52,12 @@ build:
     - chmod 644 ~/.ssh/known_hosts
     - export VERSION=$(cat ./version)
     - mkdir -p ./release
-    - envsubst < ./.release/example.env > ./.release/.env
-    - mv ./.release/build-api.sh ./.release
+    - envsubst < ./.release/example.env > ./release/.env
+    - mv ./.release/build-api.sh ./release
     - chmod +x ./release/build-api.sh
-    - mv ./.release/deploy-api.sh ./.release
+    - mv ./.release/deploy-api.sh ./release
     - chmod +x ./release/deploy-api.sh
   script:
-    - scp -P 8787 -r ./.release ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
-    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "bash ~/.release/build-api.sh; bash ~/.release/deploy-api.sh; rm -r ~/.release"
+    - scp -P 8787 -r ./release ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
+    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "bash ~/release/build-api.sh; bash ~/release/deploy-api.sh; rm -r ~/release"
 
