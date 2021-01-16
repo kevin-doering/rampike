@@ -55,12 +55,12 @@ build_api:
     - ssh-keyscan -p 8787 -H ${RAMPIKE_DOMAIN} >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
     # prepare build environment
-    - mkdir -p ./release
     - apk add --no-cache gettext
     - export APP_NAME=rpk-api
     - export ARCH_TARGET=api-aarch64
     - export VERSION=$(cat ./version)
     - export CONTAINER_PORT=3000
+    - mkdir -p ./release-${APP_NAME}
     - envsubst < ./.release/example.env > ./release-${APP_NAME}/.env
     - mv ./.release/build.sh ./release-${APP_NAME}
     - chmod +x ./release-${APP_NAME}/build.sh
@@ -90,12 +90,12 @@ build_client:
     - ssh-keyscan -p 8787 -H ${RAMPIKE_DOMAIN} >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
     # prepare build environment
-    - mkdir -p ./release
     - apk add --no-cache gettext
     - export APP_NAME=rpk-client
     - export ARCH_TARGET=ssr-aarch64
     - export VERSION=$(cat ./version)
     - export CONTAINER_PORT=4000
+    - mkdir -p ./release-${APP_NAME}
     - envsubst < ./.release/example.env > ./release-${APP_NAME}/.env
     - mv ./.release/build.sh ./release-${APP_NAME}
     - chmod +x ./release-${APP_NAME}/build.sh
