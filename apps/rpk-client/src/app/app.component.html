@@ -1,5 +1,3 @@
 <span>Client: {{ isProdClient ? 'prod' : 'dev'}}</span>
-<div *ngIf="response$ | async as res">
-  {{ res.message }}
-</div>
 <span>API: {{ (isProdApi$ | async) ? 'prod' : 'dev' }}</span>
+<span *ngIf="version$ | async as version">Version: {{ version }}</span>
