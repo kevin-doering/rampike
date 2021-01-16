@@ -90,14 +90,14 @@ spec:
           containerPort: $CONTAINER_PORT
         livenessProbe:
           httpGet:
-            path: /healthz
+            path: /
             port: $CONTAINER_PORT
           initialDelaySeconds: 5
           timeoutSeconds: 5
           periodSeconds: 15
         readinessProbe:
           httpGet:
-            path: /readyz
+            path: /
             port: $CONTAINER_PORT
           initialDelaySeconds: 5
           timeoutSeconds: 5

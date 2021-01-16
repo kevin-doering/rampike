@@ -6,8 +6,8 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('')
-  getVersion(): string {
-    return this.appService.getVersion();
+  getIndex(): boolean {
+    return this.appService.isHealthy();
   }
 
   @Get('production')
@@ -15,13 +15,8 @@ export class AppController {
     return this.appService.isProduction();
   }
 
-  @Get('healthz')
-  isHealthy(): boolean {
-    return this.appService.isHealthy();
-  }
-
-  @Get('readyz')
-  isReady(): boolean {
-    return this.appService.isReady();
+  @Get('version')
+  getVersion(): string {
+    return this.appService.getVersion();
   }
 }
