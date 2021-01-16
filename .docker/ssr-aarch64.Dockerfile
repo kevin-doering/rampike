@@ -1,3 +1,4 @@
+ARG RELEASE
 ARG APP_NAME
 
 FROM arm64v8/node:14.15.4-alpine as buildContainer
@@ -13,8 +14,10 @@ RUN npm run nx build $APP_NAME -- --prod --optimization
 RUN npm run nx run $APP_NAME:server:production
 
 FROM arm64v8/node:14.15.4-alpine
+ARG RELEASE
 ARG APP_NAME
 ENV PORT=4000
+ENV VERSION=$RELEASE
 COPY --from=buildContainer /rampike/dist/apps/$APP_NAME/browser/ /dist/apps/$APP_NAME/browser/
 COPY --from=buildContainer /rampike/dist/apps/$APP_NAME/server/ /dist/apps/server/
 EXPOSE $PORT

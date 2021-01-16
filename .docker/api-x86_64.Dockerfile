@@ -1,3 +1,4 @@
+ARG RELEASE
 ARG APP_NAME
 
 FROM node:14.15-alpine as buildContainer
