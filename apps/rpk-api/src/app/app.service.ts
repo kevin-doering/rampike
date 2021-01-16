@@ -12,10 +12,12 @@ export class AppService {
   }
 
   isHealthy(): boolean {
+    // TODO: check if db connection is established
     return true;
   }
 
   isReady(): boolean {
+    // TODO: add proper readiness check
     return true;
   }
 }
