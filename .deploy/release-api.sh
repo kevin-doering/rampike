@@ -15,8 +15,6 @@ fi
 
 cd ~/apx/manifests/$APP_NAME/kustomization
 kustomize edit set image $DOCKER_USER/$APP_NAME=$DOCKER_USER/$APP_NAME:$VERSION
-
-cd ~/apx/manifests/$APP_NAME
 git add kustomization.yaml
 git commit -m "[ci] update image version"
 git push
