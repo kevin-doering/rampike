@@ -4,7 +4,6 @@ stages:
   - deploy
 
 variables:
-  APP_NAME: rpk-api
   DOCKER_NAMESPACE: rampike
   GITLAB_DOMAIN: gitlab.com
   RAMPIKE_DOMAIN: rampike.de
@@ -57,6 +56,8 @@ build:
     # prepare build environment
     - mkdir -p ./release
     - apk add --no-cache gettext
+    - export APP_NAME=rpk-api
+    - export ARCH_TARGET=api-aarch64
     - export VERSION=$(cat ./version)
     - export CONTAINER_PORT=3000
     - envsubst < ./.release/example.env > ./release/.env

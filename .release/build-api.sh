@@ -21,7 +21,7 @@ function clone_workspace {
 function build_image {
   local DOCKER_BUILDKIT=1
   docker login -u $DOCKER_NAMESPACE -p $DOCKER_PASSWORD
-  docker build --cache-from $DOCKER_NAMESPACE/$APP_NAME:latest  -t $DOCKER_NAMESPACE/$APP_NAME:latest . -f .docker/api-aarch64.Dockerfile --build-arg APP_NAME=$APP_NAME --build-arg CONTAINER_PORT=$CONTAINER_PORT --build-arg RELEASE=$VERSION --build-arg BUILDKIT_INLINE_CACHE=1
+  docker build --cache-from $DOCKER_NAMESPACE/$APP_NAME:latest  -t $DOCKER_NAMESPACE/$APP_NAME:latest . -f .docker/$ARCH_TARGET.Dockerfile --build-arg APP_NAME=$APP_NAME --build-arg CONTAINER_PORT=$CONTAINER_PORT --build-arg RELEASE=$VERSION --build-arg BUILDKIT_INLINE_CACHE=1
   docker tag $DOCKER_NAMESPACE/$APP_NAME:latest $DOCKER_NAMESPACE/$APP_NAME:$VERSION
   docker push $DOCKER_NAMESPACE/$APP_NAME:latest
   docker push $DOCKER_NAMESPACE/$APP_NAME:$VERSION
