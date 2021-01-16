@@ -33,7 +33,7 @@ function create_new_repository {
   echo "# ${APP_NAME} manifests" > README.md
   git add README.md
   git commit -m "create ${APP_NAME} manifest repository"
-  git remote set-url origin git@github.com:$GITHUB_NAMESPACE/$APP_NAME.git
+  git remote set-url origin git@$GITHUB_DOMAIN:$GITHUB_NAMESPACE/$APP_NAME.git
   git push --set-upstream origin main
   mkdir -p kustomization
 }
