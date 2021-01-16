@@ -19,7 +19,7 @@ function clone_manifests {
 
 function commit_version {
   cd ~/apx/manifests/$APP_NAME/kustomization
-  kustomize edit set image $DOCKER_NAMESPACE/$APP_NAME=$DOCKER_NAMESPACE/$APP_NAME:$VERSION
+  kustomize edit set image $WORKDIR_NAMESPACE/$APP_NAME=$WORKDIR_NAMESPACE/$APP_NAME:$VERSION
   git add kustomization.yaml
   git commit -m "[ci] update image version to ${VERSION}"
   git push
@@ -49,8 +49,8 @@ resources:
 - certificate.yaml
 - hpa.yaml
 images:
-- name: $DOCKER_NAMESPACE/$APP_NAME
-  newName: $DOCKER_NAMESPACE/$APP_NAME
+- name: $WORKDIR_NAMESPACE/$APP_NAME
+  newName: $WORKDIR_NAMESPACE/$APP_NAME
   newTag: $VERSION
 EOF
 }
@@ -83,7 +83,7 @@ spec:
     spec:
       containers:
       - name: $APP_NAME
-        image: $DOCKER_NAMESPACE/$APP_NAME:0.0.0
+        image: $WORKDIR_NAMESPACE/$APP_NAME:0.0.0
         imagePullPolicy: IfNotPresent
         ports:
         - name: web
@@ -202,14 +202,14 @@ function commit_manifests {
 }
 
 function register_in_flux {
-  mkdir -p ~/apx/flux-cd/cluster/$DOCKER_NAMESPACE/$APP_NAME
+  mkdir -p ~/apx/flux-cd/cluster/$WORKDIR_NAMESPACE/$APP_NAME
 
   flux create source git $APP_NAME \
     --url https://github.com/$GITHUB_NAMESPACE/$APP_NAME \
     --branch main \
     --interval 1m \
     --export \
-    | tee ~/apx/flux-cd/cluster/$DOCKER_NAMESPACE/$APP_NAME/source.yaml
+    | tee ~/apx/flux-cd/cluster/$WORKDIR_NAMESPACE/$APP_NAME/source.yaml
 
   flux create kustomization $APP_NAME \
     --source $APP_NAME \
@@ -218,11 +218,11 @@ function register_in_flux {
     --validation client \
     --interval 5m \
     --export \
-    | tee -a ~/apx/flux-cd/cluster/$DOCKER_NAMESPACE/$APP_NAME/source.yaml
+    | tee -a ~/apx/flux-cd/cluster/$WORKDIR_NAMESPACE/$APP_NAME/source.yaml
 }
 
 function commit_register {
-  cd ~/apx/flux-cd/cluster/$DOCKER_NAMESPACE/$APP_NAME
+  cd ~/apx/flux-cd/cluster/$WORKDIR_NAMESPACE/$APP_NAME
   git add source.yaml
   git commit -m "register manifest repository as source in flux-system"
   git push origin main
