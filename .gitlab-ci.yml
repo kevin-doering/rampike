@@ -58,6 +58,7 @@ build:
     - mkdir -p ./release
     - apk add --no-cache gettext
     - export VERSION=$(cat ./version)
+    - export CONTAINER_PORT=3000
     - envsubst < ./.release/example.env > ./release/.env
     - mv ./.release/build-api.sh ./release
     - chmod +x ./release/build-api.sh
