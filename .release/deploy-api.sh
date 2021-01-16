@@ -221,7 +221,7 @@ function register_in_flux {
     | tee -a ~/apx/flux-cd/cluster/$WORKDIR_NAMESPACE/$APP_NAME/source.yaml
 }
 
-function commit_register {
+function commit_source {
   cd ~/apx/flux-cd/cluster/$WORKDIR_NAMESPACE/$APP_NAME
   git add source.yaml
   git commit -m "register manifest repository as source in flux-system"
@@ -245,7 +245,7 @@ else
     add_pod_scaler
     commit_manifests
     register_in_flux
-    commit_register
+    commit_source
   else
     clone_manifests
     commit_version

@@ -35,7 +35,7 @@ if [ -f ~/apx/projects/$CI_PROJECT_NAME/package.json ]; then
 else
   remote_branch_exists=$(git ls-remote --heads $WORKSPACE_REPOSITORY main)
   if [[ -z ${remote_branch_exists} ]]; then
-    echo "no remote origin: ${WORKSPACE_REPOSITORY} with branch main"
+    echo "no remote origin workspace: ${WORKSPACE_REPOSITORY} with branch main"
   else
     clone_workspace
     build_image
