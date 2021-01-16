@@ -1,20 +1,5 @@
 #!/bin/bash
 
-get_env
-
-if [ -f ~/apx/projects/$CI_PROJECT_NAME/package.json ]; then
-  pull_workspace
-  build_image
-else
-  remote_branch_exists=$(git ls-remote --heads $WORKSPACE_REPOSITORY main)
-  if [[ -z ${remote_branch_exists} ]]; then
-    echo "no remote origin: ${WORKSPACE_REPOSITORY} with branch main"
-  else
-    clone_workspace
-    build_image
-  fi
-fi
-
 function get_env {
   if [ -f ~/release/.env ]; then
     . ~/release/.env
@@ -38,4 +23,19 @@ function build_image {
   docker build -t $DOCKER_USER/$APP_NAME:$VERSION . -f .docker/api-aarch64.Dockerfile --build-arg APP_NAME=$APP_NAME --build-arg RELEASE=$VERSION
   docker push $DOCKER_USER/$APP_NAME:$VERSION
 }
+
+get_env
+
+if [ -f ~/apx/projects/$CI_PROJECT_NAME/package.json ]; then
+  pull_workspace
+  build_image
+else
+  remote_branch_exists=$(git ls-remote --heads $WORKSPACE_REPOSITORY main)
+  if [[ -z ${remote_branch_exists} ]]; then
+    echo "no remote origin: ${WORKSPACE_REPOSITORY} with branch main"
+  else
+    clone_workspace
+    build_image
+  fi
+fi
 

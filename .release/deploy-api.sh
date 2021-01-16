@@ -1,21 +1,5 @@
 #!/bin/bash
 
-get_env
-
-if [ -f ~/apx/manifests/$APP_NAME/kustomization/kustomization.yaml ]; then
-  pull_manifests
-  commit_version
-else
-  remote_branch_exists=$(git ls-remote --heads $MANIFEST_REPOSITORY main)
-  if [[ -z ${remote_branch_exists} ]]; then
-    # TODO: register manifest repository (flux create source)
-    echo "no remote origin: ${MANIFEST_REPOSITORY} with branch main"
-  else
-    clone_manifests
-    commit_version
-  fi
-fi
-
 function get_env {
   if [ -f ~/release/.env ]; then
     . ~/release/.env
@@ -40,5 +24,21 @@ function commit_version {
   git commit -m "[ci] update image version to ${VERSION}"
   git push
 }
+
+get_env
+
+if [ -f ~/apx/manifests/$APP_NAME/kustomization/kustomization.yaml ]; then
+  pull_manifests
+  commit_version
+else
+  remote_branch_exists=$(git ls-remote --heads $MANIFEST_REPOSITORY main)
+  if [[ -z ${remote_branch_exists} ]]; then
+    # TODO: register manifest repository (flux create source)
+    echo "no remote origin: ${MANIFEST_REPOSITORY} with branch main"
+  else
+    clone_manifests
+    commit_version
+  fi
+fi
 
 
