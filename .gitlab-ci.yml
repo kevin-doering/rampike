@@ -35,7 +35,42 @@ version:
     paths:
       - version
 
-build:
+build_api:
+  image: docker
+  stage: build
+  services:
+    - docker:dind
+  only:
+    - master
+  except:
+    - tags
+  before_script:
+    # configure ssh connection with rampike.de
+    - mkdir -p ~/.ssh && chmod 700 ~/.ssh
+    - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - which ssh-agent || ( apk --update add openssh-client )
+    - eval $(ssh-agent -s)
+    - ssh-add ~/.ssh/id_rsa
+    - ssh-keyscan -p 8787 -H ${RAMPIKE_DOMAIN} >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    # prepare build environment
+    - mkdir -p ./release
+    - apk add --no-cache gettext
+    - export APP_NAME=rpk-api
+    - export ARCH_TARGET=api-aarch64
+    - export VERSION=$(cat ./version)
+    - export CONTAINER_PORT=3000
+    - envsubst < ./.release/example.env > ./release-${APP_NAME}/.env
+    - mv ./.release/build.sh ./release-${APP_NAME}
+    - chmod +x ./release-${APP_NAME}/build.sh
+    - mv ./.release/app.sh ./release-${APP_NAME}
+    - chmod +x ./release-${APP_NAME}/app.sh
+  script:
+    - scp -P 8787 -r ./release-${APP_NAME} ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
+    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "bash ~/release-${APP_NAME}/build.sh; bash ~/release-${APP_NAME}/app.sh; rm -r ~/release-${APP_NAME}"
+
+build_client:
   image: docker
   stage: build
   services:
@@ -57,15 +92,15 @@ build:
     # prepare build environment
     - mkdir -p ./release
     - apk add --no-cache gettext
-    - export APP_NAME=rpk-api
-    - export ARCH_TARGET=api-aarch64
+    - export APP_NAME=rpk-client
+    - export ARCH_TARGET=ssr-aarch64
     - export VERSION=$(cat ./version)
-    - export CONTAINER_PORT=3000
-    - envsubst < ./.release/example.env > ./release/.env
-    - mv ./.release/build.sh ./release
-    - chmod +x ./release/build.sh
-    - mv ./.release/app.sh ./release
-    - chmod +x ./release/app.sh
+    - export CONTAINER_PORT=4000
+    - envsubst < ./.release/example.env > ./release-${APP_NAME}/.env
+    - mv ./.release/build.sh ./release-${APP_NAME}
+    - chmod +x ./release-${APP_NAME}/build.sh
+    - mv ./.release/app.sh ./release-${APP_NAME}
+    - chmod +x ./release-${APP_NAME}/app.sh
   script:
-    - scp -P 8787 -r ./release ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
-    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "bash ~/release/build.sh; bash ~/release/app.sh; rm -r ~/release"
+    - scp -P 8787 -r ./release-${APP_NAME} ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
+    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "bash ~/release-${APP_NAME}/build.sh; bash ~/release-${APP_NAME}/app.sh; rm -r ~/release-${APP_NAME}"
