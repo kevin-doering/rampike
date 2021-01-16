@@ -1,5 +1,6 @@
 ARG RELEASE
 ARG APP_NAME
+ARG CONTAINER_PORT
 
 FROM node:14.15-alpine as buildContainer
 ENV CYPRESS_INSTALL_BINARY=0
@@ -15,7 +16,8 @@ RUN npm run nx build $APP_NAME -- --prod --optimization
 FROM node:14.15-alpine
 ARG RELEASE
 ARG APP_NAME
-ENV PORT=3000
+ARG CONTAINER_PORT=3000
+ENV PORT=$CONTAINER_PORT
 ENV VERSION=$RELEASE
 WORKDIR /dist/app
 COPY --from=buildContainer /rampike/dist/apps/$APP_NAME/ /dist/app/
