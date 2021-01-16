@@ -8,7 +8,7 @@ variables:
   RAMPIKE_DOMAIN: rampike.de
   GITHUB_NAMESPACE: kevin-doering
   PROJECT_REPOSITORY: "git@gitlab.com:${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git"
-  MANIFEST_REPOSITORY: "git@github.com:${GITHUB_NAMESPACE}/${CI_PROJECT_NAME}.git"
+  MANIFEST_REPOSITORY: "git@github.com:${GITHUB_NAMESPACE}/${APP_NAME}.git"
 
 version:
   image: python:3.7-stretch
