@@ -5,6 +5,7 @@ stages:
 
 variables:
   APP_NAME: rpk-api
+  DOCKER_NAMESPACE: rampike
   GITLAB_DOMAIN: gitlab.com
   RAMPIKE_DOMAIN: rampike.de
   GITHUB_NAMESPACE: kevin-doering

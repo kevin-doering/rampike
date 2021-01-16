@@ -19,7 +19,7 @@ function clone_manifests {
 
 function commit_version {
   cd ~/apx/manifests/$APP_NAME/kustomization
-  kustomize edit set image $DOCKER_USER/$APP_NAME=$DOCKER_USER/$APP_NAME:$VERSION
+  kustomize edit set image $DOCKER_NAMESPACE/$APP_NAME=$DOCKER_NAMESPACE/$APP_NAME:$VERSION
   git add kustomization.yaml
   git commit -m "[ci] update image version to ${VERSION}"
   git push
