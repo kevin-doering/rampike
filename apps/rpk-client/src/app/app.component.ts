@@ -14,7 +14,7 @@ export class AppComponent {
   isProdApi$: Observable<boolean>;
   constructor(private readonly http: HttpClient) {
     this.isProdClient = environment.production;
-    this.version$ = this.http.get<string>('http://localhost:3333/v0');
-    this.isProdApi$ = this.http.get<boolean>('http://localhost:3333/v0/production');
+    this.version$ = this.http.get<string>('https://api.rampike.de/version');
+    this.isProdApi$ = this.http.get<boolean>('https://api.rampike.de/production');
   }
 }

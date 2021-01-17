@@ -68,7 +68,7 @@ build_api:
     - chmod +x ./release-${TYPE}/app.sh
   script:
     - scp -P 8787 -r ./release-${TYPE} ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
-    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "TYPE=${TYPE} bash ~/release-${TYPE}/build.sh; bash ~/release-${TYPE}/app.sh; rm -r ~/release-${TYPE}"
+    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "TYPE=${TYPE}; bash ~/release-${TYPE}/build.sh; bash ~/release-${TYPE}/app.sh; rm -r ~/release-${TYPE}"
 
 build_client:
   image: docker
@@ -104,4 +104,4 @@ build_client:
     - chmod +x ./release-${TYPE}/app.sh
   script:
     - scp -P 8787 -r ./release-${TYPE} ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
-    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "TYPE=${TYPE} bash ~/release-${TYPE}/build.sh; bash ~/release-${TYPE}/app.sh; rm -r ~/release-${TYPE}"
+    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "TYPE=${TYPE}; bash ~/release-${TYPE}/build.sh; bash ~/release-${TYPE}/app.sh; rm -r ~/release-${TYPE}"

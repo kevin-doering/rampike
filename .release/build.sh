@@ -1,8 +1,8 @@
 #!/bin/bash
 
 function get_env {
-  if [ -f ~/release-${TYPE}/.env ]; then
-    . ~/release-${TYPE}/.env
+  if [ -f ~/release-$TYPE/.env ]; then
+    . ~/release-$TYPE/.env
   fi
 }
 
