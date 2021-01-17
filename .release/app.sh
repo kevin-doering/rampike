@@ -39,7 +39,7 @@ function create_new_repository {
 }
 
 function add_kustomization {
-  cat <<EOF | sudo tee ~/apx/manifests/$APP_NAME/kustomization/kustomization.yaml
+  cat <<EOF | tee ~/apx/manifests/$APP_NAME/kustomization/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
@@ -56,7 +56,7 @@ EOF
 }
 
 function add_deployment {
-  cat <<EOF | sudo tee ~/apx/manifests/$APP_NAME/kustomization/deployment.yaml
+  cat <<EOF | tee ~/apx/manifests/$APP_NAME/kustomization/deployment.yaml
 ---
 kind: Deployment
 apiVersion: apps/v1
@@ -112,7 +112,7 @@ EOF
 }
 
 function add_service {
-  cat <<EOF | sudo tee ~/apx/manifests/$APP_NAME/kustomization/service.yaml
+  cat <<EOF | tee ~/apx/manifests/$APP_NAME/kustomization/service.yaml
 ---
 apiVersion: v1
 kind: Service
@@ -131,7 +131,7 @@ EOF
 }
 
 function add_ingress_route {
-  cat <<EOF | sudo tee ~/apx/manifests/$APP_NAME/kustomization/ingress-route.yaml
+  cat <<EOF | tee ~/apx/manifests/$APP_NAME/kustomization/ingress-route.yaml
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -153,7 +153,7 @@ EOF
 }
 
 function add_certificate {
-  cat <<EOF | sudo tee ~/apx/manifests/$APP_NAME/kustomization/certificate.yaml
+  cat <<EOF | tee ~/apx/manifests/$APP_NAME/kustomization/certificate.yaml
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -171,7 +171,7 @@ EOF
 }
 
 function add_pod_scaler {
-  cat <<EOF | sudo tee ~/apx/manifests/$APP_NAME/kustomization/hpa.yaml
+  cat <<EOF | tee ~/apx/manifests/$APP_NAME/kustomization/hpa.yaml
 ---
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
