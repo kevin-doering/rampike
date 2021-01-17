@@ -40,7 +40,7 @@ build_api:
   services:
     - docker:dind
   only:
-    - master
+    - main
   except:
     - tags
   before_script:
@@ -59,15 +59,16 @@ build_api:
     - export ARCH_TARGET=api-aarch64
     - export VERSION=$(cat ./version)
     - export CONTAINER_PORT=3000
-    - mkdir -p ./release
-    - envsubst < ./.release/example.env > ./release/.env
-    - mv ./.release/build.sh ./release
-    - chmod +x ./release/build.sh
-    - mv ./.release/app.sh ./release
-    - chmod +x ./release/app.sh
+    - export TYPE=api
+    - mkdir -p ./release-${TYPE}
+    - envsubst < ./.release/example.env > ./release-${TYPE}/.env
+    - mv ./.release/build.sh ./release-${TYPE}
+    - chmod +x ./release-${TYPE}/build.sh
+    - mv ./.release/app.sh ./release-${TYPE}
+    - chmod +x ./release-${TYPE}/app.sh
   script:
-    - scp -P 8787 -r ./release ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
-    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "bash ~/release/build.sh; bash ~/release/app.sh; rm -r ~/release"
+    - scp -P 8787 -r ./release-${TYPE} ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
+    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "TYPE=${TYPE} bash ~/release-${TYPE}/build.sh; bash ~/release-${TYPE}/app.sh; rm -r ~/release-${TYPE}"
 
 build_client:
   image: docker
@@ -94,12 +95,13 @@ build_client:
     - export ARCH_TARGET=ssr-aarch64
     - export VERSION=$(cat ./version)
     - export CONTAINER_PORT=4000
-    - mkdir -p ./release
-    - envsubst < ./.release/example.env > ./release/.env
-    - mv ./.release/build.sh ./release
-    - chmod +x ./release/build.sh
-    - mv ./.release/app.sh ./release
-    - chmod +x ./release/app.sh
+    - export TYPE=client
+    - mkdir -p ./release-${TYPE}
+    - envsubst < ./.release/example.env > ./release-${TYPE}/.env
+    - mv ./.release/build.sh ./release-${TYPE}
+    - chmod +x ./release-${TYPE}/build.sh
+    - mv ./.release/app.sh ./release-${TYPE}
+    - chmod +x ./release-${TYPE}/app.sh
   script:
-    - scp -P 8787 -r ./release ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
-    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "bash ~/release/build.sh; bash ~/release/app.sh; rm -r ~/release"
+    - scp -P 8787 -r ./release-${TYPE} ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
+    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "TYPE=${TYPE} bash ~/release-${TYPE}/build.sh; bash ~/release-${TYPE}/app.sh; rm -r ~/release-${TYPE}"
