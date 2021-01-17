@@ -60,15 +60,15 @@ build_api:
     - export ARCH_TARGET=api-aarch64
     - export VERSION=$(cat ./version)
     - export CONTAINER_PORT=3000
-    - mkdir -p ./release-${APP_NAME}
-    - envsubst < ./.release/example.env > ./release-${APP_NAME}/.env
-    - mv ./.release/build.sh ./release-${APP_NAME}
-    - chmod +x ./release-${APP_NAME}/build.sh
-    - mv ./.release/app.sh ./release-${APP_NAME}
-    - chmod +x ./release-${APP_NAME}/app.sh
+    - mkdir -p ./release
+    - envsubst < ./.release/example.env > ./release/.env
+    - mv ./.release/build.sh ./release
+    - chmod +x ./release/build.sh
+    - mv ./.release/app.sh ./release
+    - chmod +x ./release/app.sh
   script:
-    - scp -P 8787 -r ./release-${APP_NAME} ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
-    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "bash ~/release-${APP_NAME}/build.sh; bash ~/release-${APP_NAME}/app.sh; rm -r ~/release-${APP_NAME}"
+    - scp -P 8787 -r ./release ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
+    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "bash ~/release/build.sh; bash ~/release/app.sh; rm -r ~/release"
 
 build_client:
   image: docker
@@ -95,12 +95,12 @@ build_client:
     - export ARCH_TARGET=ssr-aarch64
     - export VERSION=$(cat ./version)
     - export CONTAINER_PORT=4000
-    - mkdir -p ./release-${APP_NAME}
-    - envsubst < ./.release/example.env > ./release-${APP_NAME}/.env
-    - mv ./.release/build.sh ./release-${APP_NAME}
-    - chmod +x ./release-${APP_NAME}/build.sh
-    - mv ./.release/app.sh ./release-${APP_NAME}
-    - chmod +x ./release-${APP_NAME}/app.sh
+    - mkdir -p ./release
+    - envsubst < ./.release/example.env > ./release/.env
+    - mv ./.release/build.sh ./release
+    - chmod +x ./release/build.sh
+    - mv ./.release/app.sh ./release
+    - chmod +x ./release/app.sh
   script:
-    - scp -P 8787 -r ./release-${APP_NAME} ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
-    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "bash ~/release-${APP_NAME}/build.sh; bash ~/release-${APP_NAME}/app.sh; rm -r ~/release-${APP_NAME}"
+    - scp -P 8787 -r ./release ${SERVER_USER}@${RAMPIKE_DOMAIN}:/home/${SERVER_USER}
+    - ssh -p 8787 ${SERVER_USER}@${RAMPIKE_DOMAIN} "bash ~/release/build.sh; bash ~/release/app.sh; rm -r ~/release"
