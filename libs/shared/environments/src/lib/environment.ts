@@ -1,9 +1,18 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 export const environment = {
   production: false,
+
+  typeOrmModuleOptions: {
+    type: 'postgres',
+    host: 'localhost',
+    port: 5432,
+    username: 'postgres',
+    password: 'free',
+    database: 'rpk-api',
+    entities: [],
+    synchronize: true,
+  } as TypeOrmModuleOptions
 };
 
 /*

@@ -1,24 +1,15 @@
 import { Module } from '@nestjs/common';
 // import { TypeOrmModule } from '@nestjs/typeorm';
 
+// import { environment } from '@rampike/shared/environments';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-/*
-TypeOrmModule.forRoot({
-    type: 'postgres',
-    host: 'localhost',
-    port: 5432,
-    username: 'postgres',
-    password: 'free',
-    database: 'rpk-api',
-    entities: [],
-    synchronize: true,
-  })
- */
-
 @Module({
-  imports: [],
+  imports: [
+    // TypeOrmModule.forRoot(environment.typeOrmModuleOptions),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
