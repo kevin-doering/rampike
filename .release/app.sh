@@ -201,6 +201,11 @@ function commit_manifests {
   git push
 }
 
+function pull_flux_state {
+    cd ~/apx/flux-cd
+    git pull
+}
+
 function register_in_flux {
   mkdir -p ~/apx/flux-cd/cluster/$WORKDIR_NAMESPACE/$APP_NAME
 
@@ -244,6 +249,7 @@ else
     add_certificate
     add_pod_scaler
     commit_manifests
+    pull_flux_state
     register_in_flux
     commit_source
   else
