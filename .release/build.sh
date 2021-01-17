@@ -1,8 +1,8 @@
 #!/bin/bash
 
 function get_env {
-  if [ -f ~/release-$APP_NAME/.env ]; then
-    . ~/release-$APP_NAME/.env
+  if [ -f ~/release/.env ]; then
+    . ~/release/.env
   fi
 }
 
