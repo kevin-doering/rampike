@@ -14,7 +14,7 @@ function pull_manifests {
 function clone_manifests {
   mkdir -p ~/apx/manifests
   cd ~/apx/manifests
-  git clone $MANIFEST_REPOSITORY
+  git clone git@$GITHUB_DOMAIN:$GITHUB_NAMESPACE/$APP_NAME.git
 }
 
 function commit_version {
@@ -210,7 +210,7 @@ function register_in_flux {
   mkdir -p ~/apx/flux-cd/cluster/$WORKDIR_NAMESPACE/$APP_NAME
 
   flux create source git $APP_NAME \
-    --url https://github.com/$GITHUB_NAMESPACE/$APP_NAME \
+    --url https://$GITHUB_DOMAIN/$GITHUB_NAMESPACE/$APP_NAME \
     --branch main \
     --interval 1m \
     --export \
@@ -239,7 +239,7 @@ if [ -f ~/apx/manifests/$APP_NAME/kustomization/kustomization.yaml ]; then
   pull_manifests
   commit_version
 else
-  remote_branch_exists=$(git ls-remote --heads $MANIFEST_REPOSITORY main)
+  remote_branch_exists=$(git ls-remote --heads git@$GITHUB_DOMAIN:$GITHUB_NAMESPACE/$APP_NAME.git main)
   if [[ -z ${remote_branch_exists} ]]; then
     create_new_repository
     add_kustomization

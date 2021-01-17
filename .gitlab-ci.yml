@@ -10,7 +10,6 @@ variables:
   RAMPIKE_DOMAIN: rampike.de
   WORKDIR_NAMESPACE: rampike
   WORKSPACE_REPOSITORY: "git@${GITLAB_DOMAIN}:${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git"
-  MANIFEST_REPOSITORY: "git@${GITHUB_DOMAIN}:${GITHUB_NAMESPACE}/${APP_NAME}.git"
 
 version:
   image: python:3.7-stretch
