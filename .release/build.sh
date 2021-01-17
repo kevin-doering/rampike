@@ -3,6 +3,8 @@
 function get_env {
   if [ -f ~/release-$TYPE/.env ]; then
     . ~/release-$TYPE/.env
+  else
+    exit 1;
   fi
 }
 
