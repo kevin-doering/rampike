@@ -4,11 +4,11 @@ stages:
   - deploy
 
 variables:
-  GITHUB_DOMAIN: github.com
-  GITHUB_NAMESPACE: kevin-doering
   GITLAB_DOMAIN: gitlab.com
   RAMPIKE_DOMAIN: rampike.de
   WORKDIR_NAMESPACE: rampike
+  GITHUB_DOMAIN: github.com
+  GITHUB_NAMESPACE: kevin-doering
   WORKSPACE_REPOSITORY: "git@${GITLAB_DOMAIN}:${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git"
 
 version:
