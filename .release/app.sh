@@ -179,6 +179,7 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: $APP_NAME
+  namespace: $APP_NAME
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -259,5 +260,3 @@ else
     commit_version
   fi
 fi
-
-
