@@ -1,3 +1,2 @@
 <span>Client: {{ isProdClient ? 'prod' : 'dev'}}</span>
 <span>API: {{ (isProdApi$ | async) ? 'prod' : 'dev' }}</span>
-<span *ngIf="version$ | async as version">Version: {{ version }}</span>

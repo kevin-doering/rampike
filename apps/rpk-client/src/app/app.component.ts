@@ -10,11 +10,9 @@ import { environment } from '@rampike/shared/environments';
 })
 export class AppComponent {
   isProdClient: boolean;
-  version$: Observable<string>;
   isProdApi$: Observable<boolean>;
   constructor(private readonly http: HttpClient) {
     this.isProdClient = environment.production;
-    this.version$ = this.http.get<string>('https://api.rampike.de/version');
     this.isProdApi$ = this.http.get<boolean>('https://api.rampike.de/production');
   }
 }
